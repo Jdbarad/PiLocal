@@ -50,6 +50,15 @@ services:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
 
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    container_name: duckdns
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    restart: unless-stopped
+
 volumes:
   printify_dbVolumes:
   printify_ktorVolumes:
