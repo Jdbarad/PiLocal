@@ -25,6 +25,19 @@ services:
     volumes:
       - printify_ktorVolumes:/uploads
 
+  web:
+    image: printify-web:latest
+    container_name: printifyWebsiteContainer
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://localhost:80" ]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    ports:
+      - "8001:80"
+
   nginxproxymanager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: nginxproxymanager
