@@ -1,0 +1,27 @@
+services:
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: always
+    ports:
+      - "3000:61208"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/os-release:/etc/os-release:ro
+    command: glances -w
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    ports:
+      - "9443:9443"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: unless-stopped
+    command: -H unix:///var/run/docker.sock
+  monitoring:
+    container_name: monitoring
+    build: device/.
+volumes:
+  portainer_data:
