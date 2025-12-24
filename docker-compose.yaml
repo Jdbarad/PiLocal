@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:17-alpine
+    container_name: printifyDbContainer
+    restart: always
+    env_file:
+      - stack.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - printify_dbVolumes:/var/lib/postgresql/data
+
+  ktor-app:
+    image: printify:latest
+    container_name: printifyKtorContainer
+    restart: always
+    depends_on:
+      - database
+    env_file:
+      - stack.env
+    volumes:
+      - printify_ktorVolumes:/uploads
+
+  cloudflare-tunnel:
+    image: cloudflare/cloudflared
+    container_name: printifyCloudflareContainer
+    restart: always
+    env_file:
+      - stack.env
+    command: tunnel --no-autoupdate run
+
+volumes:
+  printify_dbVolumes:
+  printify_ktorVolumes:
