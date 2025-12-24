@@ -6,7 +6,7 @@ services:
     container_name: printifyDbContainer
     restart: always
     env_file:
-      - stack.env
+      - ../stack.env
     ports:
       - "5433:5432"
     volumes:
@@ -19,7 +19,7 @@ services:
     depends_on:
       - database
     env_file:
-      - stack.env
+      - ../stack.env
     volumes:
       - printify_ktorVolumes:/uploads
 
@@ -28,7 +28,7 @@ services:
     container_name: printifyCloudflareContainer
     restart: always
     env_file:
-      - stack.env
+      - ../stack.env
     command: tunnel --no-autoupdate run
 
 volumes:
