@@ -16,6 +16,8 @@ services:
     image: printify:latest
     container_name: printifyKtorContainer
     restart: always
+    ports:
+      - '8000:8000'
     depends_on:
       - database
     env_file:
