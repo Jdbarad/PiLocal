@@ -50,12 +50,10 @@ services:
   2fauth:
     image: 2fauth/2fauth:latest
     container_name: 2fauth
-    privileged: true
-    user: "${UID}:${GID}"
     volumes:
       - /home/jd/Server/2fauth:/2fauth
     ports:
-      - "8000:8000/tcp"
+      - "8080:8000/tcp"
     environment:
       - APP_NAME=2FAuth
       - APP_ENV=local
