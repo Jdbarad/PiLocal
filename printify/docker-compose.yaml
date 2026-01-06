@@ -50,7 +50,6 @@ services:
   2fauth:
     image: 2fauth/2fauth:latest
     container_name: 2fauth
-    user: "${UID}:${GID}"
     volumes:
       - ./2fauth:/2fauth
     ports:
