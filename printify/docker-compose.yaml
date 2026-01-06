@@ -58,7 +58,7 @@ services:
       - APP_NAME=2FAuth
       - APP_ENV=local
       - APP_DEBUG=true
-      - APP_URL=http://pi.local:8080
+      - APP_URL=https://auth.jdbarad.duckdns.org
       - SITE_OWNER=jdbarad1010@gmail.com
       - LOG_CHANNEL=daily
       - LOG_LEVEL=notice
