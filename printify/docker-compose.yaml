@@ -47,23 +47,6 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
-  2fauth:
-    image: 2fauth/2fauth:latest
-    container_name: 2fauth
-    volumes:
-      - /home/jd/Server/2fauth:/2fauth
-    ports:
-      - "8080:8000/tcp"
-    environment:
-      - APP_NAME=2FAuth
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - APP_URL=http://pi.local:8080
-      - SITE_OWNER=your-email@example.com
-      - LOG_CHANNEL=daily
-      - LOG_LEVEL=notice
-      - CACHE_DRIVER=file
-      - SESSION_DRIVER=file
 
 volumes:
   printify_dbVolumes:
