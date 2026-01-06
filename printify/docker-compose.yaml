@@ -56,12 +56,12 @@ services:
     volumes:
       - ./2fauth:/2fauth
     ports:
-      - "8080:8000/tcp"
+      - "83:8000/tcp"
     environment:
       - APP_NAME=2FAuth
       - APP_ENV=local
       - APP_DEBUG=false
-      - APP_URL=http://localhost:8080
+      - APP_URL=http://localhost:83
       - SITE_OWNER=your-email@example.com
       - LOG_CHANNEL=daily
       - LOG_LEVEL=notice
