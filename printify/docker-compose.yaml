@@ -16,8 +16,6 @@ services:
     image: printify:latest
     container_name: printifyKtorContainer
     restart: always
-    ports:
-      - '8000:8000'
     depends_on:
       - database
     env_file:
@@ -56,12 +54,12 @@ services:
     volumes:
       - ./2fauth:/2fauth
     ports:
-      - "83:8000/tcp"
+      - "8000:8000/tcp"
     environment:
       - APP_NAME=2FAuth
       - APP_ENV=local
       - APP_DEBUG=false
-      - APP_URL=http://localhost:83
+      - APP_URL=http://localhost:8000
       - SITE_OWNER=your-email@example.com
       - LOG_CHANNEL=daily
       - LOG_LEVEL=notice
