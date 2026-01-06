@@ -49,17 +49,23 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
-
-  duckdns:
-    image: lscr.io/linuxserver/duckdns:latest
-    container_name: duckdns
+  2fauth:
+    image: 2fauth/2fauth:latest
+    container_name: 2fauth
+    volumes:
+      - ./2fauth:/2fauth
+    ports:
+      - "8080:8000/tcp"
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    env_file:
-      - ../stack.env
-    restart: unless-stopped
+      - APP_NAME=2FAuth
+      - APP_ENV=local
+      - APP_DEBUG=false
+      - APP_URL=http://localhost:8080
+      - SITE_OWNER=your-email@example.com
+      - LOG_CHANNEL=daily
+      - LOG_LEVEL=notice
+      - CACHE_DRIVER=file
+      - SESSION_DRIVER=file
 
 volumes:
   printify_dbVolumes:
