@@ -53,7 +53,7 @@ services:
     privileged: true
     user: "${UID}:${GID}"
     volumes:
-      - ./2fauth:/2fauth
+      - /home/jd/Server/2fauth:/2fauth
     ports:
       - "8000:8000/tcp"
     environment:
