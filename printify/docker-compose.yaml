@@ -59,7 +59,7 @@ services:
       - APP_ENV=local
       - APP_DEBUG=true
       - APP_URL=http://pi.local:8080
-      - SITE_OWNER=your-email@example.com
+      - SITE_OWNER=jdbarad1010@gmail.com
       - LOG_CHANNEL=daily
       - LOG_LEVEL=notice
       - CACHE_DRIVER=file
