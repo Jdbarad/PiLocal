@@ -58,7 +58,7 @@ services:
       - APP_NAME=2FAuth
       - APP_ENV=local
       - APP_DEBUG=true
-      - APP_URL=http://localhost:8080
+      - APP_URL=http://pi.local:8080
       - SITE_OWNER=your-email@example.com
       - LOG_CHANNEL=daily
       - LOG_LEVEL=notice
