@@ -22,6 +22,8 @@ services:
       - ../stack.env
     volumes:
       - printify_ktorVolumes:/uploads
+    ports:
+      - "8000:8000"
 
   web:
     image: printify-web:latest
