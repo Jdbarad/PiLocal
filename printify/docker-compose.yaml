@@ -39,9 +39,10 @@ services:
     image: myoung34/github-runner:latest
     container_name: github_runner
     restart: always
+    env_file:
+      - ../stack.env
     environment:
       REPO_URL: https://github.com/Innoveloper/Printify
-      RUNNER_TOKEN: "BPDYJOI4K4R36IHSF5J4PVDJNSXCE"
       RUNNER_NAME: "Pi5-Runner"
       RUNNER_LABELS: "pi5,local-deploy"
     volumes:
