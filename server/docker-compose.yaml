@@ -22,6 +22,27 @@ services:
     command: -H unix:///var/run/docker.sock
   monitoring:
     container_name: monitoring
-    build: device/.
+    image: monitoring:latest
+    ports:
+      - "8008:8008"
+    environment:
+      - PORT=8008
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8008/health || exit 1"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+  nginxproxymanager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginxproxymanager
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
 volumes:
   portainer_data:

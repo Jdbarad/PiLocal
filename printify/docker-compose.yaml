@@ -35,51 +35,6 @@ services:
       start_period: 30s
     ports:
       - "8001:80"
-  github-runner:
-    image: myoung34/github-runner:latest
-    container_name: github_runner
-    restart: always
-    env_file:
-      - ../stack.env
-    environment:
-      REPO_URL: https://github.com/Innoveloper/Printify
-      RUNNER_NAME: "Pi5-Runner"
-      RUNNER_LABELS: "pi5,local-deploy"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./runner-data:/_diag
-
-  #TODO: move to server docker compose
-  nginxproxymanager:
-    image: 'jc21/nginx-proxy-manager:latest'
-    container_name: nginxproxymanager
-    restart: unless-stopped
-    ports:
-      - '80:80'
-      - '81:81'
-      - '443:443'
-    volumes:
-      - ./nginx/data:/data
-      - ./nginx/letsencrypt:/etc/letsencrypt
-  #TODO: move to server docker compose
-  2fauth:
-    image: 2fauth/2fauth:latest
-    container_name: 2fauth
-    volumes:
-      - /home/jd/Server/2fauth:/2fauth
-    ports:
-      - "8080:8000/tcp"
-    environment:
-      - APP_NAME=2FAuth
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - APP_URL=https://auth.jdbarad.duckdns.org
-      - SITE_OWNER=jdbarad1010@gmail.com
-      - LOG_CHANNEL=daily
-      - LOG_LEVEL=notice
-      - CACHE_DRIVER=file
-      - SESSION_DRIVER=file
-
 volumes:
   printify_dbVolumes:
   printify_ktorVolumes:
