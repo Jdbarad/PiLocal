@@ -33,9 +33,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
-  nginxproxymanager:
+  nginxProxyManager:
     image: 'jc21/nginx-proxy-manager:latest'
-    container_name: nginxproxymanager
+    container_name: nginxProxyManager
     restart: unless-stopped
     ports:
       - '80:80'
