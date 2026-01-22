@@ -13,8 +13,8 @@ services:
     container_name: portainer-new
     image: portainer/portainer-ce:latest
     ports:
-      - "9443:9444"
-      - "9000:9001"
+      - "9444:9443"
+      - "9001:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
