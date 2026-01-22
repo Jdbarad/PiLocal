@@ -9,17 +9,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/os-release:/etc/os-release:ro
     command: glances -w
-  portainer-new:
-    container_name: portainer-new
-    image: portainer/portainer-ce:latest
-    ports:
-      - "9444:9443"
-      - "9001:9000"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    restart: unless-stopped
-    command: -H unix:///var/run/docker.sock
   monitoring-new:
     container_name: monitoring-new
     image: monitoring:latest
@@ -44,5 +33,3 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
-volumes:
-  portainer_data:
