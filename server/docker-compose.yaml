@@ -1,7 +1,7 @@
 services:
-  glances:
+  glances-new:
     image: nicolargo/glances:latest
-    container_name: glances
+    container_name: glances-new
     restart: always
     ports:
       - "3000:61208"
@@ -13,15 +13,15 @@ services:
     container_name: portainer-new
     image: portainer/portainer-ce:latest
     ports:
-      - "9443:9443"
-      - "9000:9000"
+      - "9443:9444"
+      - "9000:9001"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
     restart: unless-stopped
     command: -H unix:///var/run/docker.sock
-  monitoring:
-    container_name: monitoring
+  monitoring-new:
+    container_name: monitoring-new
     image: monitoring:latest
     ports:
       - "8008:8008"
