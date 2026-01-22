@@ -1,7 +1,7 @@
 services:
-  glances-new:
+  glances:
     image: nicolargo/glances:latest
-    container_name: glances-new
+    container_name: glances
     restart: always
     ports:
       - "3000:61208"
@@ -9,8 +9,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/os-release:/etc/os-release:ro
     command: glances -w
-  monitoring-new:
-    container_name: monitoring-new
+  monitoring:
+    container_name: monitoring
     image: monitoring:latest
     ports:
       - "8008:8008"
@@ -22,8 +22,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
-  nginxproxymanager_new:
-    container_name: nginxProxyManager-new
+  nginxproxymanager:
+    container_name: nginxProxyManager
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
