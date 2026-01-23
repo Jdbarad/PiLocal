@@ -9,6 +9,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/os-release:/etc/os-release:ro
     command: glances -w
+    healthcheck:
+      test: ["CMD", "executable", "-v", "curl", "&&", "curl", "-f", "http://localhost:61208/api/3/status", "||", "exit", "1"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+
   monitoring:
     container_name: monitoring
     image: monitoring:latest
@@ -22,6 +28,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+
   nginxproxymanager:
     container_name: nginxProxyManager
     image: 'jc21/nginx-proxy-manager:latest'
@@ -34,11 +41,12 @@ services:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:81"]
+      test: ["CMD", "/usr/bin/check-health"]
       interval: 1m
       timeout: 10s
       retries: 3
       start_period: 30s
+
   beszel-agent:
     image: henrygd/beszel-agent
     container_name: beszel-agent
@@ -52,3 +60,8 @@ services:
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDkZ1eykBnHnGqzC29N6B5wb/DZc16RVXiaSRQmipmO'
       TOKEN: 10651-f129588aa-4baa-33570b898
       HUB_URL: http://80.225.248.6:3001
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 45876 || exit 1"]
+      interval: 1m
+      timeout: 5s
+      retries: 3
