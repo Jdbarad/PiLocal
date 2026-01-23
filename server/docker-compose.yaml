@@ -33,6 +33,12 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:81"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
   beszel-agent:
     image: henrygd/beszel-agent
     container_name: beszel-agent
