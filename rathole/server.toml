@@ -1,9 +1,15 @@
 [server]
 bind_addr = "0.0.0.0:2333" # The tunnel control port
 
+[server.transport]
+type = "tcp"
+
+[server.transport.tcp]
+keepalive_interval = 20
+
 [server.services.http]
 token = "JD@PiTurneel.http"
-bind_addr = "0.0.0.0:80"   # Public HTTP
+bind_addr = "0.0.0.0:80" # Public HTTP
 
 [server.services.https]
 token = "JD@PiTurneel.https"

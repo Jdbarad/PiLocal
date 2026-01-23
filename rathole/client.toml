@@ -1,10 +1,13 @@
 [client]
 remote_addr = "80.225.248.6:2333"
 
+retry_interval = 15
+heartbeat_timeout = 60
+
 [client.services.http]
 token = "JD@PiTurneel.http"
-local_addr = "127.0.0.1:8080" # Maps to Nginx Proxy Manager HTTP port
+local_addr = "127.0.0.1:80" # Maps to Nginx Proxy Manager HTTP port
 
 [client.services.https]
 token = "JD@PiTurneel.https"
-local_addr = "127.0.0.1:4443" # Maps to Nginx Proxy Manager HTTPS port
+local_addr = "127.0.0.1:443" # Maps to Nginx Proxy Manager HTTPS port

@@ -33,3 +33,11 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
+  rathole-client:
+    restart: unless-stopped
+    container_name: rathole-client
+    image: rapiz1/rathole:latest
+    command: [ "--client", "/app/client.toml" ]
+    network_mode: host # Use host network mode for easy local network access
+    volumes:
+      - ./../rathole/client.toml:/app/client.toml
