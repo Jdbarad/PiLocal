@@ -33,11 +33,3 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
-  rathole-client:
-    container_name: rathole-client
-    image: archef2000/rathole:latest
-    restart: unless-stopped
-    command: [ "--client", "/app/client.toml" ]
-    network_mode: host
-    volumes:
-      - ./client.toml:/app/client.toml
