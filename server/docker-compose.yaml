@@ -10,7 +10,7 @@ services:
       - /etc/os-release:/etc/os-release:ro
     command: glances -w
     healthcheck:
-      test: ["CMD", "executable", "-v", "curl", "&&", "curl", "-f", "http://localhost:61208/api/3/status", "||", "exit", "1"]
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:61208/api/3/status')"]
       interval: 1m
       timeout: 10s
       retries: 3
@@ -61,7 +61,7 @@ services:
       TOKEN: 10651-f129588aa-4baa-33570b898
       HUB_URL: http://80.225.248.6:3001
     healthcheck:
-      test: ["CMD-SHELL", "nc -z localhost 45876 || exit 1"]
+      test: ["CMD", "/beszel-agent", "-version"]
       interval: 1m
       timeout: 5s
       retries: 3
