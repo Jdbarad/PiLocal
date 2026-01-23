@@ -33,3 +33,16 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
+  beszel-agent:
+    image: henrygd/beszel-agent
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./beszel_agent_data:/var/lib/beszel-agent
+    environment:
+      LISTEN: 45876
+      KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDkZ1eykBnHnGqzC29N6B5wb/DZc16RVXiaSRQmipmO'
+      TOKEN: 10651-f129588aa-4baa-33570b898
+      HUB_URL: http://80.225.248.6:3001
