@@ -9,11 +9,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/os-release:/etc/os-release:ro
     command: glances -w
-    healthcheck:
-      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:61208/api/3/status')"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
 
   monitoring:
     container_name: monitoring
@@ -60,8 +55,3 @@ services:
       KEY: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDkZ1eykBnHnGqzC29N6B5wb/DZc16RVXiaSRQmipmO'
       TOKEN: 10651-f129588aa-4baa-33570b898
       HUB_URL: http://80.225.248.6:3001
-    healthcheck:
-      test: ["CMD", "/beszel-agent", "-version"]
-      interval: 1m
-      timeout: 5s
-      retries: 3
