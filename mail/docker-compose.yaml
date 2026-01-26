@@ -27,13 +27,7 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-    environment:
-      PORT: 8080
-      SERVER_URI: "https://mail.innoveloper.duckdns.org"
-      DATABASE_URI: "jdbc:postgresql://db:5432/innoveloper_mail"
-      DATABASE_USER: ${DATABASE_USER:-postgres}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-postgres}
-      GMAIL_USERNAME: ${GMAIL_USERNAME}
-      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
+    env_file:
+      - stack.env
 volumes:
   postgres_data:
