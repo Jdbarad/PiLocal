@@ -4,10 +4,8 @@ services:
   postgres:
     image: postgres:17-alpine
     restart: always
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file:
+      - stack.env
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -22,16 +20,8 @@ services:
     user: "${UID}:${GID}"
     ports:
       - "5678:5678"
-    environment:
-      - DB_TYPE=postgresdb
-      - DB_POSTGRESDB_HOST=postgres
-      - DB_POSTGRESDB_PORT=5432
-      - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
-      - DB_POSTGRESDB_USER=${POSTGRES_USER}
-      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
-      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
-      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
-      - WEBHOOK_URL=${WEBHOOK_URL}
+    env_file:
+      - stack.env
     volumes:
       - ./n8n_data:/home/node/.n8n
     depends_on:
