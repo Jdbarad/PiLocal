@@ -1,0 +1,10 @@
+bindPort = 2333
+
+auth.method = "token"
+auth.token = "JD@PiTurneelWithFRPS"
+
+transport.tls.force = true
+
+webServer.port = 7500
+webServer.user = "admin"
+webServer.password = "admin_password"

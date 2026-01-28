@@ -1,0 +1,21 @@
+serverAddr = "80.225.248.6"
+serverPort = 2333
+
+auth.method = "token"
+auth.token = "JD@PiTurneelWithFRPS"
+
+transport.tls.enable = true
+
+[[proxies]]
+name = "http-tunnel"
+type = "tcp"
+localIP = "172.17.0.1"
+localPort = 80
+remotePort = 80
+
+[[proxies]]
+name = "https-tunnel"
+type = "tcp"
+localIP = "172.17.0.1"
+localPort = 443
+remotePort = 443

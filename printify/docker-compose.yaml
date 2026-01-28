@@ -6,7 +6,7 @@ services:
     container_name: printifyDbContainer
     restart: always
     env_file:
-      - ../stack.env
+      - stack.env
     ports:
       - "5433:5432"
     volumes:
@@ -26,7 +26,7 @@ services:
       database:
         condition: service_healthy # Wait for DB to be healthy, not just started
     env_file:
-      - ../stack.env
+      - stack.env
     volumes:
       - printify_ktorVolumes:/uploads
     ports:
